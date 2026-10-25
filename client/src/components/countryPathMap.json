@@ -1,0 +1,168 @@
+{
+  "za": [
+    "south africa",
+    "lesotho",
+    "swaziland"
+  ],
+  "eg": [
+    "egypt"
+  ],
+  "ng": [
+    "nigeria"
+  ],
+  "ke": [
+    "kenya"
+  ],
+  "cd": [
+    "drc"
+  ],
+  "et": [
+    "ethiopia"
+  ],
+  "ma": [
+    "morocco",
+    "western sahara"
+  ],
+  "gh": [
+    "ghana"
+  ],
+  "mg": [
+    "madagascar"
+  ],
+  "tz": [
+    "tanzania"
+  ],
+  "in": [
+    "india",
+    "kashmir"
+  ],
+  "cn": [
+    "china",
+    "tibet",
+    "taiwan",
+    "hainan"
+  ],
+  "jp": [
+    "honshu",
+    "hokkaido",
+    "kyushu",
+    "shikoku"
+  ],
+  "id": [
+    "java",
+    "sumatra",
+    "kalimantan",
+    "sulawesi",
+    "timor"
+  ],
+  "pk": [
+    "pakistan"
+  ],
+  "bd": [
+    "bangladesh"
+  ],
+  "vn": [
+    "vietnam"
+  ],
+  "ph": [
+    "luzon",
+    "mindanao",
+    "mindoro",
+    "palawan"
+  ],
+  "kr": [
+    "south korea"
+  ],
+  "sa": [
+    "saudi"
+  ],
+  "sg": [
+    "singapore",
+    "malaysia"
+  ],
+  "ae": [
+    "uae",
+    "oman"
+  ],
+  "de": [
+    "germany"
+  ],
+  "gb": [
+    "britain",
+    "northern ireland"
+  ],
+  "fr": [
+    "france",
+    "corsica"
+  ],
+  "it": [
+    "italy",
+    "sicilia",
+    "sardegna"
+  ],
+  "es": [
+    "spain",
+    "balears"
+  ],
+  "pl": [
+    "poland"
+  ],
+  "nl": [
+    "netherlands"
+  ],
+  "ch": [
+    "switzerland"
+  ],
+  "is": [
+    "iceland"
+  ],
+  "va": [
+    "italy"
+  ],
+  "us": [
+    "usa",
+    "alaska",
+    "hawaii"
+  ],
+  "ca": [
+    "canada",
+    "baffin",
+    "victoria island",
+    "newfoundland"
+  ],
+  "mx": [
+    "mexico"
+  ],
+  "br": [
+    "brazil"
+  ],
+  "ar": [
+    "argentina",
+    "tierra del fuego"
+  ],
+  "co": [
+    "colombia"
+  ],
+  "cl": [
+    "chile"
+  ],
+  "uy": [
+    "uruguay"
+  ],
+  "au": [
+    "australia",
+    "tasmania"
+  ],
+  "nz": [
+    "new zealand north island",
+    "new zealand south island"
+  ],
+  "ru": [
+    "russia",
+    "sakhalin",
+    "novaya zemlya"
+  ],
+  "tr": [
+    "turkey"
+  ]
+}

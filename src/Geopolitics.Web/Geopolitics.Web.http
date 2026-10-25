@@ -1,0 +1,6 @@
+@Geopolitics.Web_HostAddress = http://localhost:5138
+
+GET {{Geopolitics.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,32 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Database & Local Data
+data/*.db
+data/*.db-shm
+data/*.db-wal
+*.db
+*.db-journal
+
+## Environment & Secrets
+.env
+.env*
+appsettings.Development.json
+
+## Node / Client
+node_modules/
+client/node_modules/
+client/dist/
+dist/
+
+## Logs & Temp
+*.log
+*.tmp
+.DS_Store
+.vscode/
+.idea/
