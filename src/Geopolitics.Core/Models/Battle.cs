@@ -108,5 +108,48 @@ public class ActiveBattle
 
     [JsonPropertyName("defenderEliminated")]
     public bool? DefenderEliminated { get; set; }
-}
 
+    public ActiveBattle Clone()
+    {
+        return new ActiveBattle
+        {
+            BattleId = BattleId,
+            FromCountryId = FromCountryId,
+            ToCountryId = ToCountryId,
+            AttackerStartingSoldiers = AttackerStartingSoldiers,
+            DefenderStartingSoldiers = DefenderStartingSoldiers,
+            Rounds = Rounds.Select(r => new ClashResult
+            {
+                DiceCount = r.DiceCount,
+                AttackerDice = new List<int>(r.AttackerDice),
+                DefenderDice = new List<int>(r.DefenderDice),
+                Pairings = r.Pairings.Select(p => new DicePairing
+                {
+                    AttackerDie = p.AttackerDie,
+                    DefenderDie = p.DefenderDie,
+                    Outcome = p.Outcome
+                }).ToList(),
+                AttackerLosses = r.AttackerLosses,
+                DefenderLosses = r.DefenderLosses,
+                AttackerRemaining = r.AttackerRemaining,
+                DefenderRemaining = r.DefenderRemaining
+            }).ToList(),
+            CurrentRoundIndex = CurrentRoundIndex,
+            Status = Status,
+            ConquerBonus = ConquerBonus,
+            Outcome = Outcome,
+            RoundNumber = RoundNumber,
+            TurnNumber = TurnNumber,
+            AttackerPlayerId = AttackerPlayerId,
+            AttackerPlayerName = AttackerPlayerName,
+            DefenderPlayerId = DefenderPlayerId,
+            DefenderPlayerName = DefenderPlayerName,
+            AttackerCountryId = AttackerCountryId,
+            AttackerCountryName = AttackerCountryName,
+            DefenderCountryId = DefenderCountryId,
+            DefenderCountryName = DefenderCountryName,
+            Conquered = Conquered,
+            DefenderEliminated = DefenderEliminated
+        };
+    }
+}

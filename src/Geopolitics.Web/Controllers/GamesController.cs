@@ -204,6 +204,16 @@ public class GamesController : ControllerBase
             game.ActiveBattle = new ActiveBattle
             {
                 BattleId = $"battle_{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}",
+                RoundNumber = game.RoundNumber,
+                TurnNumber = game.TurnNumber,
+                AttackerPlayerId = atkPlayer.Id,
+                AttackerPlayerName = atkPlayer.Name,
+                DefenderPlayerId = defPlayer?.Id,
+                DefenderPlayerName = defPlayer?.Name ?? "Unknown",
+                AttackerCountryId = attC.Id,
+                AttackerCountryName = attC.Name,
+                DefenderCountryId = defC.Id,
+                DefenderCountryName = defC.Name,
                 FromCountryId = attC.Id,
                 ToCountryId = defC.Id,
                 AttackerStartingSoldiers = attC.Soldiers,
@@ -261,7 +271,10 @@ public class GamesController : ControllerBase
                 await _analytics.UpdatePlayerStatsAsync(userId, new StatsDelta { BattlesWon = 1, CountriesConquered = 1 });
                 await _commentary.AddCommentaryAsync(game,
                     _commentary.GenerateConquestCommentary(atkPlayer, defPlayer, defC, res.ConquerBonus, res.DefenderEliminated), "conquest");
-                game.BattleHistory.Add(new ActiveBattle { BattleId = b.BattleId, FromCountryId = b.FromCountryId, ToCountryId = b.ToCountryId, Status = "conquered" });
+                b.Conquered = true;
+                b.Outcome = $"Commander {atkPlayer.Name} conquered {defC.Name}!";
+                b.DefenderEliminated = res.DefenderEliminated;
+                game.BattleHistory.Add(b.Clone());
 
                 if (game.Status == "completed")
                     await _analytics.UpdatePlayerStatsAsync(userId, new StatsDelta { GamesWon = 1 });
@@ -272,7 +285,9 @@ public class GamesController : ControllerBase
                 await _analytics.UpdatePlayerStatsAsync(userId, new StatsDelta { BattlesLost = 1 });
                 await _commentary.AddCommentaryAsync(game,
                     _commentary.GenerateDefeatCommentary(atkPlayer, attC, defC), "defeat");
-                game.BattleHistory.Add(new ActiveBattle { BattleId = b.BattleId, FromCountryId = b.FromCountryId, ToCountryId = b.ToCountryId, Status = "attacker_defeated" });
+                b.Conquered = false;
+                b.Outcome = $"Assault on {defC.Name} failed! Attacking force repelled.";
+                game.BattleHistory.Add(b.Clone());
             }
 
             await _db.UpdateGameAsync(game);
@@ -293,7 +308,9 @@ public class GamesController : ControllerBase
             b.Status = "retreated";
             await _commentary.AddCommentaryAsync(game,
                 _commentary.GenerateRetreatCommentary(atkPlayer, attC, defC), "retreat");
-            game.BattleHistory.Add(new ActiveBattle { BattleId = b.BattleId, FromCountryId = b.FromCountryId, ToCountryId = b.ToCountryId, Status = "retreated" });
+            b.Conquered = false;
+            b.Outcome = $"Commander {atkPlayer.Name} ordered a ceasefire and withdrew from {defC.Name}.";
+            game.BattleHistory.Add(b.Clone());
             game.ActiveBattle = null;
 
             await _db.UpdateGameAsync(game);
